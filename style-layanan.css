@@ -1,0 +1,264 @@
+/* === style-layanan.css === */
+
+/* 1. HERO HEADER */
+
+.page-header {
+  margin-top: 0;
+  height: 65vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("assets/img/dapur.jpg") no-repeat center/cover;
+  /* background-size: cover; -> merged above */
+  /* background-position: center; -> merged above */
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fallback if image missing or logic change */
+.page-header::before {
+  /* content: ""; -> handled by linear-gradient above for better performance */
+  display: none;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  padding-top: 80px;
+}
+.header-content .subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+.header-content h1 {
+  font-family: var(--font-heading);
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+.header-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+.design-process {
+  padding: 6rem 0;
+  background-color: var(--color-bg-surface);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-title h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+}
+.section-title p {
+  color: var(--color-text-body);
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.process-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+.process-icon {
+  font-size: 3rem;
+  color: var(--color-primary-accent);
+  margin-bottom: 1.5rem;
+}
+
+.process-item h4 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-primary-dark);
+}
+.process-item p {
+  font-size: 0.95rem;
+  color: var(--color-text-body);
+  line-height: 1.7;
+}
+
+/* 2. LAYOUT SHOWCASE (ZIG-ZAG) */
+.service-showcase {
+  padding: 6rem 0;
+  scroll-margin-top: 100px; /* Offset for fixed header */
+}
+
+.service-showcase.alt-bg {
+  background-color: var(--color-bg-surface);
+}
+
+.service-grid-zigzag {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.service-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-text .service-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.service-text h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary-dark);
+}
+
+.service-text p {
+  font-size: 1.1rem;
+  color: var(--color-text-body);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.service-text ul {
+  list-style: none;
+  margin-bottom: 2.5rem;
+}
+
+.service-text li {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--color-text-body);
+}
+
+/*  checklist custom */
+.service-text li::before {
+  content: "✓";
+  color: var(--color-secondary-accent); /* or primary accent */
+  color: var(--color-primary-accent);
+  font-weight: 600;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* 3. LAYOUT ZIG-ZAG (REVERSE) */
+
+.service-grid-zigzag.reverse .service-image {
+  order: 2;
+}
+.service-grid-zigzag.reverse .service-text {
+  order: 1;
+}
+
+.service-nav {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1.25rem 0;
+  position: sticky;
+  top: 0;
+  /* Usually below Navbar, but if navbar is transparent, this might overlap 
+     Actually Navbar is fixed. So this should be top: ~80px.
+     Let's check script.js? No, script doesn't handle this.
+     If navbar is constant height ~80px.
+  */
+  top: 80px;
+  z-index: 990;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.service-nav .container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.service-nav a {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-body);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.service-nav a:hover {
+  color: var(--color-primary-dark);
+}
+
+.service-nav a.active {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--color-primary-accent);
+}
+
+/* 4. RESPONSIVE */
+@media (max-width: 768px) {
+  .service-showcase {
+    padding: 4rem 0;
+  }
+  .header-content h1 {
+    font-size: 3rem;
+  }
+  .service-grid-zigzag {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .service-grid-zigzag .service-text {
+    order: 1 !important;
+  }
+  .service-grid-zigzag .service-image {
+    order: 2 !important;
+  }
+
+  .service-text h2 {
+    font-size: 2rem;
+  }
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .service-nav {
+    display: none; /* Hide sticky nav on mobile if too crowded */
+  }
+}

@@ -1,0 +1,179 @@
+/* === style-kontak.css === */
+
+/* 1. HERO HEADER */
+.page-header {
+  margin-top: 0;
+  height: 65vh;
+  /* Image fallback */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("assets/img/ruangtamu.png") no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  padding-top: 80px;
+}
+.header-content .subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+.header-content h1 {
+  font-family: var(--font-heading);
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+.header-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+/* 2. KONTEN KONTAK (2 Kolom) */
+.contact-section {
+  padding: 6rem 0;
+  background-color: var(--color-white);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+}
+
+/* 3. KOLOM KIRI (Info Kontak) */
+.contact-info h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+}
+.info-intro {
+  font-size: 1.1rem;
+  color: var(--color-text-body);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+.info-item {
+  margin-bottom: 1.5rem;
+}
+.info-title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+.info-item p,
+.info-item a {
+  font-size: 1.1rem;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  font-weight: 400;
+}
+.info-item a:hover {
+  text-decoration: underline;
+  color: var(--color-primary-accent);
+}
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+.social-links a {
+  font-weight: 600;
+}
+
+/* 4. KOLOM KANAN (Formulir) */
+.contact-form {
+  background-color: var(--color-bg-surface);
+  padding: 3rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+.contact-form h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary-dark);
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-primary-dark);
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--color-white);
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary-accent);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Tombol Kirim Form */
+.cta-button-form {
+  width: 100%;
+  text-align: center;
+}
+
+/* 5. BAGIAN PETA */
+.map-section {
+  padding: 6rem 0;
+  background-color: var(--color-bg-main);
+}
+
+.map-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.map-section iframe {
+  display: block;
+}
+
+/* 6. RESPONSIVE */
+@media (max-width: 768px) {
+  .header-content h1 {
+    font-size: 3rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

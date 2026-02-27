@@ -1,0 +1,560 @@
+:root {
+  /* Color Palette - Premium & Warm */
+  --color-primary-dark: #1a1a1a; /* Dark Charcoal */
+  --color-primary-accent: #8b5e3c; /* Warm Wood */
+  --color-bg-main: #f9f7f2; /* Warm Cream */
+  --color-bg-surface: #efebe0; /* Warm Beige */
+  --color-accent-green: #556b2f; /* Dark Olive */
+  --color-text-body: #4a4a4a; /* Soft Charcoal */
+  --color-text-light: #f9f7f2; /* Light Text on Dark Bg */
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 1rem; /* 16px */
+  --spacing-md: 2rem; /* 32px */
+  --spacing-lg: 4rem; /* 64px */
+  --spacing-xl: 8rem; /* 128px */
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  max-width: 65ch; /* Optimal reading width */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utility Classes */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+/* Buttons */
+.cta-button,
+.cta-button-outline,
+.cta-button-form {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  font-size: 0.9rem;
+  border: none;
+}
+
+.cta-button,
+.cta-button-form {
+  background-color: var(--color-primary-accent);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary-accent);
+}
+
+.cta-button:hover,
+.cta-button-form:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button-outline {
+  background-color: transparent;
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary-dark);
+}
+
+.cta-button-outline:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Delays for Animations */
+.fade-in-delay-1 {
+  transition-delay: 0.1s;
+}
+.fade-in-delay-2 {
+  transition-delay: 0.2s;
+}
+.fade-in-delay-3 {
+  transition-delay: 0.3s;
+}
+.fade-in-delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* --- SHARED COMPONENTS (Navbar & Footer) --- */
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.4s ease;
+  background-color: transparent; /* Default transparent */
+}
+
+/* Scrolled State or Solid Background Page */
+.navbar.scrolled,
+.navbar.solid-bg {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white); /* Default White on Hero */
+  transition: color 0.4s ease;
+}
+
+.navbar.scrolled .logo,
+.navbar.solid-bg .logo {
+  color: var(--color-primary-dark);
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-white); /* Default White on Hero */
+  position: relative;
+  transition: color 0.4s ease;
+}
+
+.navbar.scrolled .nav-links a,
+.navbar.solid-bg .nav-links a {
+  color: var(--color-primary-dark);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-white); /* White underline */
+  transition:
+    width 0.3s ease,
+    background-color 0.4s ease;
+}
+
+.navbar.scrolled .nav-links a::after,
+.navbar.solid-bg .nav-links a::after {
+  background-color: var(--color-primary-accent);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.cta-nav {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--color-white);
+  color: var(--color-primary-dark) !important;
+  border-radius: var(--radius-sm);
+  transition:
+    transform 0.2s ease,
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.navbar.scrolled .cta-nav,
+.navbar.solid-bg .cta-nav {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white) !important;
+}
+
+.cta-nav:hover {
+  transform: translateY(-2px);
+  background-color: var(--color-primary-accent);
+  color: var(--color-white) !important;
+}
+
+.cta-nav::after {
+  display: none;
+}
+
+/* Mobile Menu Button */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.hamburger-bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-white); /* White bars */
+  transition:
+    0.3s,
+    background-color 0.4s ease;
+}
+
+.navbar.scrolled .hamburger-bar,
+.navbar.solid-bg .hamburger-bar {
+  background-color: var(--color-primary-dark);
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+  padding: 4rem 0 2rem;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.footer h4 {
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer p,
+.footer a {
+  color: #ccc;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.footer a:hover {
+  color: var(--color-primary-accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+}
+/* --- BOTTOM CTA (Saran 1: Centered & Elegant) --- */
+.bottom-cta {
+  background-color: var(
+    --color-primary-dark
+  ); /* Menggunakan warna gelap utama */
+  padding: 6rem 0; /* Memberikan ruang napas yang luas atas-bawah */
+  text-align: center; /* Membuat semua konten rata tengah */
+}
+
+.bottom-cta .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-cta h2 {
+  color: var(--color-white); /* Teks heading menjadi putih */
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.bottom-cta p {
+  color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Teks paragraf putih agak redup agar elegan */
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  font-weight: 300;
+}
+
+/* Memodifikasi tombol khusus untuk area gelap ini */
+.bottom-cta .cta-button-outline {
+  background-color: var(
+    --color-primary-accent
+  ); /* Tombol diubah jadi warna solid/aksen */
+  color: var(--color-white);
+  border: 1px solid var(--color-primary-accent);
+  padding: 1rem 3rem;
+  font-size: 1rem;
+}
+
+.bottom-cta .cta-button-outline:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary-dark);
+  border-color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Penyesuaian responsif untuk mobile */
+@media (max-width: 768px) {
+  .bottom-cta {
+    padding: 4rem 0;
+  }
+  .bottom-cta h2 {
+    font-size: 2.2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: var(--color-bg-main);
+    z-index: 999;
+    padding: 2rem;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nav-menu.is-active {
+    right: 0;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .menu-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  /* --- Perbaikan posisi Logo Footer di Mobile (VERSI FINAL) --- */
+  .footer .footer-logo {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important; /* Memaksa kotak logo melebar penuh agar bisa dirata tengah */
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* --- PERBAIKAN KONTRAS HEADER --- */
+.header-content h1,
+.header-content p,
+.header-content .subtitle {
+  color: #ffffff !important; /* Memaksa teks jadi putih */
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7); /* Memberi bayangan gelap di belakang teks */
+}
+
+/* Memastikan overlay gambar cukup gelap untuk menonjolkan teks */
+.page-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6); /* Menggelapkan gambar 60% */
+  z-index: 1;
+}
+
+/* Pastikan konten berada di atas overlay */
+.header-content {
+  z-index: 2;
+}
+
+/* --- GARIS PEMISAH TIPIS (SUBTLE DIVIDER) --- */
+hr.subtle-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.08);
+  width: 85%;
+  max-width: 1200px;
+  margin: 4rem auto;
+}
+
+@media (max-width: 768px) {
+  hr.subtle-divider {
+    width: 90%;
+    margin: 3rem auto;
+  }
+}
+
+/* --- Perbaikan Posisi Teks Copyright Footer --- */
+.footer-bottom p {
+  max-width: none; /* Menghilangkan batasan lebar */
+  margin: 0 auto; /* Memastikan paragrafnya betul-betul di tengah */
+}

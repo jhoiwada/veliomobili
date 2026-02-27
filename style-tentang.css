@@ -1,0 +1,277 @@
+/* === style-tentang.css (REVISI FINAL & OPTIMASI) === */
+
+/* 1. HERO HEADER */
+.page-header {
+  margin-top: 0;
+  height: 65vh;
+  /* Menggunakan gambar tentangkami.png dengan overlay gelap */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("assets/img/tentangkami.png") no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efek lingkaran dekoratif premium */
+.page-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: var(--color-primary-accent);
+  border-radius: 50%;
+  opacity: 0.05;
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  padding-top: 80px;
+}
+
+.header-content .subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.header-content h1 {
+  font-family: var(--font-heading);
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: var(--color-white) !important;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+/* 2. VISI MISI SECTION */
+.visi-misi {
+  padding: 8rem 0;
+  background: var(--color-bg-main);
+}
+
+.visi-misi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.visi-box,
+.misi-box {
+  position: relative;
+  padding: 4rem 3rem;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-md);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+}
+
+/* Efek hover wipe elegan */
+.visi-box::before,
+.misi-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--color-primary-dark);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.visi-box:hover::before,
+.misi-box:hover::before {
+  width: 100%;
+}
+
+/* Memastikan konten tetap terlihat dan berganti warna dengan kontras tinggi */
+.visi-box > *,
+.misi-box > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease;
+}
+
+.visi-box h3,
+.misi-box h3 {
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.visi-box p,
+.misi-box p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text-body);
+}
+
+/* REVISI HOVER: Teks tidak menjadi putih semua agar hierarki terjaga */
+.visi-box:hover h3,
+.misi-box:hover h3 {
+  color: var(--color-primary-accent); /* Judul jadi warna kayu saat hover */
+}
+
+.visi-box:hover p,
+.misi-box:hover p {
+  color: rgba(255, 255, 255, 0.9); /* Deskripsi jadi putih lembut */
+}
+
+/* 3. STATS SECTION */
+.stats-section {
+  padding: 6rem 0;
+  background: var(--color-bg-surface);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+  font-size: 0.9rem;
+  color: var(--color-text-body);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+/* 4. PROSES KERJA */
+.proses-kerja {
+  padding: 8rem 0;
+  background: var(--color-white);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-title h2 {
+  font-family: var(--font-heading); /* Perbaikan variabel */
+  font-size: 3rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+}
+
+.proses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.proses-step {
+  padding: 4rem 3.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: var(--color-white);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+/* Menghilangkan border tumpuk */
+.proses-step:nth-child(odd) {
+  border-right: none;
+}
+.proses-step:nth-child(1),
+.proses-step:nth-child(2) {
+  border-bottom: none;
+}
+
+.proses-step:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.02); /* Scale dikecilkan agar lebih smooth */
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary-dark);
+}
+
+.step-number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-bg-surface);
+  margin-bottom: 1.5rem;
+  line-height: 1;
+  transition: color 0.4s ease;
+}
+
+.proses-step:hover .step-number {
+  color: rgba(255, 255, 255, 0.1); /* Angka menjadi transparan saat hover */
+}
+
+.proses-step h4 {
+  font-size: 1.3rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+  transition: color 0.4s;
+}
+
+.proses-step p {
+  font-size: 0.95rem;
+  color: var(--color-text-body);
+  transition: color 0.4s;
+}
+
+.proses-step:hover h4 {
+  color: var(--color-primary-accent);
+}
+.proses-step:hover p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 5. RESPONSIVE */
+@media (max-width: 768px) {
+  .header-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .visi-misi-grid,
+  .stats-grid,
+  .proses-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .proses-step {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    padding: 3rem 2rem;
+  }
+
+  .proses-step:not(:last-child) {
+    border-bottom: none !important;
+  }
+}
