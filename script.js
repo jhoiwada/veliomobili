@@ -158,4 +158,40 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // === BAGIAN 5: INTEGRASI FORM KE WHATSAPP ===
+  const waForm = document.getElementById("waForm");
+
+  if (waForm) {
+    waForm.addEventListener("submit", function (e) {
+      e.preventDefault(); // Mencegah halaman refresh saat tombol diklik
+
+      // 1. Ambil data yang diketik pelanggan
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const serviceSelect = document.getElementById("service");
+      const serviceText =
+        serviceSelect.options[serviceSelect.selectedIndex].text;
+      const message = document.getElementById("message").value;
+
+      // 2. Susun format pesan WhatsApp-nya
+      let waMessage = `Halo Velio Mobili, saya tertarik untuk konsultasi proyek.%0A%0A`;
+      waMessage += `*Nama:* ${name}%0A`;
+      waMessage += `*Email:* ${email}%0A`;
+
+      // Jika pelanggan memilih layanan (bukan opsi kosong)
+      if (serviceSelect.value !== "") {
+        waMessage += `*Layanan yang diminati:* ${serviceText}%0A`;
+      }
+
+      waMessage += `*Pesan:*%0A${message}`;
+
+      // 3. Nomor WA Velio Mobili (Gunakan format 62 tanpa tanda +)
+      const waNumber = "6281932320707";
+
+      // 4. Buka aplikasi/web WhatsApp di tab baru
+      const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+      window.open(waLink, "_blank");
+    });
+  }
 }); // Akhir dari DOMContentLoaded
