@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (hamburgerBtn && navMenu && menuOverlay) {
     const toggleMenu = () => {
       navMenu.classList.toggle("is-active");
+      menuOverlay.classList.toggle("is-active");
       document.body.classList.toggle("no-scroll");
       hamburgerBtn.classList.toggle("is-active"); // Animate hamburger if needed
     };
@@ -41,18 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // === BAGIAN BARU: SCROLL ANIMATIONS (FADE-IN) ===
   const fadeElements = document.querySelectorAll(".fade-in");
   if (fadeElements.length > 0) {
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target); // Run once
-        }
-      });
-    }, { threshold: 0.1 });
+    const fadeObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // Run once
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
-    fadeElements.forEach(el => fadeObserver.observe(el));
+    fadeElements.forEach((el) => fadeObserver.observe(el));
   }
- 
+
   // === BAGIAN 2: ANIMASI HITUNG-MUNDUR (Hanya jika ada) ===
   const statNumbers = document.querySelectorAll(".stat-number");
 
@@ -87,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
           observer.unobserve(el);
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     statNumbers.forEach((el) => {
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const id = entry.target.getAttribute("id");
           navLinks.forEach((link) => link.classList.remove("active"));
           const activeLink = document.querySelector(
-            `.service-nav a[href="#${id}"]`
+            `.service-nav a[href="#${id}"]`,
           );
           if (activeLink) {
             activeLink.classList.add("active");
